@@ -1,0 +1,45 @@
+{
+  "name": "root",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "build:api": "cd packages/api && yarn build",
+    "build:web": "cd packages/web && yarn build",
+    "test": "lerna run test",
+    "typecheck": "lerna run typecheck",
+    "lint": "lerna run lint",
+    "pre-commit": "lerna run pre-commit",
+    "ci": "yarn typecheck && yarn lint",
+    "heroku-postbuild": "yarn build:api"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lerna run --concurrency 1 --stream pre-commit"
+    }
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "2.33.0",
+    "@typescript-eslint/parser": "2.33.0",
+    "babel-eslint": "10.1.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-flowtype": "4.7.0",
+    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "husky": "4.2.5",
+    "lerna": "3.21.0",
+    "lint-staged": "10.2.2",
+    "prettier": "1.19.1",
+    "rimraf": "3.0.2",
+    "typescript": "3.9.2"
+  },
+  "resolutions": {
+    "**/react": "16.13.1",
+    "**/react-dom": "16.13.1"
+  }
+}
